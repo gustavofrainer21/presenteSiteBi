@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vales do Amor</title>
+        <link rel="stylesheet" href="vales.css">
+    </head>
+    <body>
+        <header>
+            <h1>💌 Vales Presentes 💌</h1>
+            <p>Cada vale pode ser resgatado uma única vez!</p>
+        </header>
+
+        <main class="vales-container">
+            <div class="vale-card" data-vale="massagem">
+                <h2>💆‍♀️Vale uma Massagem</h2>
+                <p>Uma massagem relaxante feita com todo o carinho do mundo</p>
+                <button class="btn-resgatar">Resgatar</button>
+            </div>
+
+            <div class="vale-card" data-vale="cinema">
+                <h2>🎬Vale uma Sessão de Cinema</h2>
+                <p>Filme, cobertas, pipoca e EU! Pode ser no cinema ou besteirinhas e filme em casa!</p>
+                <button class="btn-resgatar">Resgatar</button>
+            </div>
+
+            <div class="vale-card" data-vale="jantar">
+                <h2>🍝Vale um Jantar Especial</h2>
+                <p>Um jantar preparado por mim, só pra nós dois</p>
+                <button class="btn-resgatar">Resgatar</button>
+            </div>
+
+            <div class="vale-card" data-vale="beijos">
+                <h2>💋Vale por 20 beijos da uma vez</h2>
+                <p>Você vai receber 20 beijos contados! (aonde quiser)</p>
+                <button class="btn-resgatar">Resgatar</button>
+            </div>
+
+        </main>
+
+        <footer>
+            <button id="voltar">Voltar ao Início</button>
+        </footer>
+
+        <script>
+            //localStorage.clear();
+            // Sistema de resgate
+            document.querySelectorAll('.btn-resgatar').forEach(botao => {
+            const card = botao.closest('.vale-card');
+            const valeId = card.dataset.vale;
+
+            if (localStorage.getItem(valeId) === 'usado') {
+                botao.disabled = true;
+                botao.innerText = 'Já resgatado';
+                botao.style.opacity = '0.6';
+            }
+
+            botao.addEventListener('click', () => {
+                botao.disabled = true;
+                botao.innerText = 'Já resgatado';
+                botao.style.opacity = '0.6';
+                localStorage.setItem(valeId, 'usado');
+            });
+            });
+
+            // Botão de voltar
+            document.getElementById('voltar').addEventListener('click', () => {
+            window.location.href = "index.html";
+            });
+        </script>
+    </body>
+</html>
